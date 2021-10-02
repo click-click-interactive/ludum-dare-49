@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 
 public class RepairStationController : MonoBehaviour
 {
     private List<GameObject> nearbyRepairmen;
+    public Float unstability;
+    public GameplayConfig gameplayConfig;
 
     // Start is called before the first frame update
     void Start()
@@ -12,8 +15,13 @@ public class RepairStationController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (unstability.value <= gameplayConfig.maxUnstability && unstability.value >= gameplayConfig.minUnstability)
+        {
+            unstability.value -= (gameplayConfig.workerFixScore * nearbyRepairmen.Count) * Time.fixedDeltaTime;    
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
