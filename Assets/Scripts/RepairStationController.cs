@@ -22,6 +22,17 @@ public class RepairStationController : MonoBehaviour
         {
             if (!nearbyRepairmen.Contains(other.gameObject))
             {
+                var repairman = other.GetComponent<RepairmanController>();
+                
+                if (repairman != null)
+                {
+                    repairman.OnDetected();
+                }
+                else
+                {
+                    Debug.LogWarning("Object doesn't have a RepairmanController script attached !");
+                }
+                
                 nearbyRepairmen.Add(other.gameObject);
             }
         }
