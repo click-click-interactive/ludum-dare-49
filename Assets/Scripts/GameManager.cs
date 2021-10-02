@@ -1,14 +1,24 @@
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Float unstability;
 
     public GameplayConfig gameplayConfig;
+
+    public GameObject startPanel;
+
+    public GameObject victoryPanel;
+
+    public GameObject defeatPanel;
     // Start is called before the first frame update
     void Start()
     {
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
+        unstability.value = unstability.initialValue;
     }
 
     // Update is called once per frame
@@ -20,25 +30,26 @@ public class GameManager : MonoBehaviour
         }
         if (unstability.value >= gameplayConfig.maxUnstability)
         {
-            onVictory();
+            OnVictory();
         }
-
         if (unstability.value <= gameplayConfig.minUnstability)
         {
-            onDefeat();
-        }
-        
+            OnDefeat();
+        }        
     }
-
-
-    void onVictory()
+    void OnVictory()
     {
         Debug.Log("KA-BOOM");
-        
+        victoryPanel.SetActive(true);
     }
-
-    void onDefeat()
+    void OnDefeat()
     {
         Debug.Log("CRISIS AVERTED, YOU LOST");
+        defeatPanel.SetActive(true);
+    }
+    public void OnRestartClick()
+    {
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
 }
