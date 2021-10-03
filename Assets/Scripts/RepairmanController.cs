@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
@@ -7,6 +8,7 @@ public class RepairmanController : MonoBehaviour
     
     public int totalHitPoints = 5;
     public Material hurtMaterial;
+    public Bool isCryostasisActive;
     
     private GameObject _targetRepairStation;
     private bool _isNearStation;
@@ -46,7 +48,7 @@ public class RepairmanController : MonoBehaviour
         {
             FindTargetRepairStation();
         }
-        if (_isNearStation)
+        if (_isNearStation || isCryostasisActive.value)
         {
             _navMeshAgent.destination = transform.position;
         }
@@ -77,7 +79,6 @@ public class RepairmanController : MonoBehaviour
     public void OnClick()
     {
         _hitPoints--;
-        Debug.Log("Ouch ! " + _hitPoints + "/" + totalHitPoints + " hp");
         gameObject.GetComponent<MeshRenderer>().material = hurtMaterial;
         Invoke(nameof(RestoreMaterial), 0.1f);
         if (_hitPoints <= 0)

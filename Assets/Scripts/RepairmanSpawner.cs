@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 
 public class RepairmanSpawner : MonoBehaviour
@@ -7,6 +8,8 @@ public class RepairmanSpawner : MonoBehaviour
 
     public GameObject repairmanPrefab;
     public float spawnRadius;
+
+    public Bool isCryostasisActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,12 @@ public class RepairmanSpawner : MonoBehaviour
 
     public void spawnRepairman()
     {
-        var position = transform.position + Random.insideUnitSphere * spawnRadius;
-        Instantiate(repairmanPrefab, position, new Quaternion());
+        if (!isCryostasisActive.value)
+        {
+            var position = transform.position + Random.insideUnitSphere * spawnRadius;
+            Instantiate(repairmanPrefab, position, new Quaternion());    
+        }
+        
     }
 
 }

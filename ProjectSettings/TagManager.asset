@@ -7,6 +7,7 @@ TagManager:
   - NPC
   - RepairStation
   - Repairman
+  - Spawner
   layers:
   - Default
   - TransparentFX

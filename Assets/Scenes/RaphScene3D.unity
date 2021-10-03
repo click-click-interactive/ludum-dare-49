@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
   gameplayConfig: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
+  isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
 --- !u!65 &72462088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -806,6 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
   gameplayConfig: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
+  isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
 --- !u!65 &663340387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -984,6 +986,10 @@ PrefabInstance:
       propertyPath: repairmanPrefab
       value: 
       objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
+    - target: {fileID: 5449043167905242796, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: isCryostasisActive
+      value: 
+      objectReference: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
     - target: {fileID: 5449043168172235386, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -996,10 +1002,18 @@ PrefabInstance:
       propertyPath: repairmanPrefab
       value: 
       objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
+    - target: {fileID: 5449043168172235387, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: isCryostasisActive
+      value: 
+      objectReference: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
     - target: {fileID: 5449043168715321237, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321238, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: config
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
     - target: {fileID: 5449043168715321239, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1053,12 +1067,52 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: 831ffb3c-4ac1-42e0-b355-40e798d4b981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: Player/Cryostasis[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 980749070}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSpaceBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449043168715321256, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5449043168715321257, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: startPanel
@@ -1072,6 +1126,10 @@ PrefabInstance:
       propertyPath: victoryPanel
       value: 
       objectReference: {fileID: 1172275094}
+    - target: {fileID: 5449043168715321257, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: isCryostasisActive
+      value: 
+      objectReference: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
     - target: {fileID: 5449043169667166058, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.19
@@ -1084,6 +1142,10 @@ PrefabInstance:
       propertyPath: repairmanPrefab
       value: 
       objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
+    - target: {fileID: 5449043169667166059, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: isCryostasisActive
+      value: 
+      objectReference: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
 --- !u!114 &868241088
@@ -1198,6 +1260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5827dd7a81c160b4dbe911cda23c22c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &980749070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5449043168715321238, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+  m_PrefabInstance: {fileID: 858653981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c395a8a651e26d4f91d0269cbb4a89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1054431080
@@ -1702,6 +1775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
   gameplayConfig: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
+  isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
 --- !u!65 &1476433391
 BoxCollider:
   m_ObjectHideFlags: 0

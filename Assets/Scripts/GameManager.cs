@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private InputManager _inputManager;
 
+    public Bool isCryostasisActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
 
         repairmanSpawnerArray = GetComponentsInChildren<RepairmanSpawner>();
         isSpawnCoroutineActive = false;
+        isCryostasisActive.value = false;
         spawnRoutine = spawnWave();
     }
 
@@ -60,7 +63,12 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(spawnRoutine);
                 isSpawnCoroutineActive = true;
             }
-            UpdateUnstability();
+
+            if (!isCryostasisActive.value)
+            {
+                UpdateUnstability();    
+            }
+            
             UpdateDifficulty();
         }
     }
@@ -149,5 +157,28 @@ public class GameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnWaveIntervalSeconds);
         }
+    }
+
+    public void TryCastCryostasis()
+    {
+        if (unstability.value >= gameplayConfig.cryostasisCost && !isCryostasisActive.value)
+        {
+            Debug.Log("Cryostasis activated");
+            unstability.value -= gameplayConfig.cryostasisCost;
+            isCryostasisActive.value = true;
+            
+            Invoke(nameof(disableCryostasis), gameplayConfig.cryostasisDuration);
+        }
+        else
+        {
+            Debug.Log("Could not cast cryostasis");
+        }
+        
+    }
+
+    private void disableCryostasis()
+    {
+        Debug.Log("Cryostasis ended");
+        isCryostasisActive.value = false;
     }
 }

@@ -12,5 +12,7 @@ namespace ScriptableObjects
         public float easyThreshold = 25;
         public float mediumThreshold = 50;
         public float hardThreshold = 75;
+        public float cryostasisCost = 30;
+        public float cryostasisDuration = 5.0f;
     }
 }

@@ -45,4 +45,13 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+
+    public void OnSpaceBar()
+    {
+        GameManager manager = GetComponent<GameManager>();
+        if (manager != null)
+        {
+            manager.TryCastCryostasis();
+        }
+    }
 }

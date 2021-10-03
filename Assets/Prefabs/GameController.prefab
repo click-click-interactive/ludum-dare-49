@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 5449043168172235387}
   m_Layer: 0
   m_Name: RepairmanSpawner (1)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   defeatPanel: {fileID: 0}
   spawnWaveSize: 1
   spawnWaveIntervalSeconds: 3
+  difficulty: 0
 --- !u!1 &5449043169667166057
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ GameObject:
   - component: {fileID: 5449043169667166059}
   m_Layer: 0
   m_Name: RepairmanSpawner (2)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

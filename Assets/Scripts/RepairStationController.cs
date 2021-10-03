@@ -7,6 +7,7 @@ public class RepairStationController : MonoBehaviour
     private List<GameObject> nearbyRepairmen;
     public Float unstability;
     public GameplayConfig gameplayConfig;
+    public Bool isCryostasisActive;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,14 @@ public class RepairStationController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (unstability.value <= gameplayConfig.maxUnstability && unstability.value >= gameplayConfig.minUnstability)
+        if (!isCryostasisActive.value)
         {
-            unstability.value -= (gameplayConfig.workerFixScore * nearbyRepairmen.Count) * Time.fixedDeltaTime;    
-        }   
+            if (unstability.value <= gameplayConfig.maxUnstability && unstability.value >= gameplayConfig.minUnstability)
+            {
+                unstability.value -= (gameplayConfig.workerFixScore * nearbyRepairmen.Count) * Time.fixedDeltaTime;    
+            }     
+        }
+         
     }
 
     private void OnTriggerEnter(Collider other)
