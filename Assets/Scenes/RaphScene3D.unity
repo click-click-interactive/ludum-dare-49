@@ -980,6 +980,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 5449043167905242796, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: repairmanPrefab
+      value: 
+      objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
     - target: {fileID: 5449043168172235386, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -988,6 +992,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 5449043168172235387, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: repairmanPrefab
+      value: 
+      objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
     - target: {fileID: 5449043168715321237, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -1060,6 +1068,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -11.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5449043169667166059, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
+      propertyPath: repairmanPrefab
+      value: 
+      objectReference: {fileID: 2487627518475049472, guid: 1604c0e71df2566448b564fdce3c1342, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c4f39e66bbf6fd4a8e1b2e44a9fdd98, type: 3}
 --- !u!114 &868241088
