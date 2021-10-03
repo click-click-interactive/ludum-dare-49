@@ -52,6 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
   gameplayConfig: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
+  isCryostasisActive: {fileID: 0}
+  isWorking: 1
+  disabledMaterial: {fileID: 0}
 --- !u!54 &3445777635972248014
 Rigidbody:
   m_ObjectHideFlags: 0
