@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
     {
         if (state == "play")
         {
+            if (!isSpawnCoroutineActive)
+            {
+                StartCoroutine(spawnRoutine);
+                isSpawnCoroutineActive = true;
+            }
             UpdateUnstability();
         }
     }
