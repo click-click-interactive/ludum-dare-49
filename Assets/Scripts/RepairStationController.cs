@@ -71,6 +71,11 @@ public class RepairStationController : MonoBehaviour
         Die();
     }
 
+    public void OnOverload()
+    {
+        Die();
+    }
+
     public void Die()
     {
         for (int i = nearbyRepairmen.Count -1; i >= 0; i--)
