@@ -1,30 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
+
+[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
-    public void Click(InputAction.CallbackContext context)
-    {
-        if (context.phase.Equals(InputActionPhase.Performed))
-        {   
-            Mouse mouse = Mouse.current;
-            Ray ray = Camera.main.ScreenPointToRay(mouse.position.ReadValue());
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            
-            if (hit.collider != null) {
-                if (hit.collider.gameObject.CompareTag("RepairStation"))
-                {
-                    Debug.Log ("CLICKED " + hit.collider.gameObject.name);
+    private PlayerInput _playerInput;
+    private Dictionary<InputType, InputActionMap> _actionMaps;
 
-                    RepairStationController repairStationController =
-                        hit.collider.gameObject.GetComponent<RepairStationController>();
-                    if (repairStationController != null)
-                    {
-                        repairStationController.Die();
-                    }
-                }
-            }
+    void Start()
+    {
+        _playerInput = gameObject.GetComponent<PlayerInput>();
+        _actionMaps = new Dictionary<InputType, InputActionMap>();
+
+        if (_playerInput)
+        {
+            _actionMaps.Add(InputType.Player, _playerInput.actions.FindActionMap("Player"));
+            _actionMaps.Add(InputType.UI, _playerInput.actions.FindActionMap("UI"));
         }
+    }
+
+    public void ToggleActionMap(InputType inputType)
+    {
+        if (!_actionMaps.ContainsKey(inputType)) return;
+
+        _playerInput.SwitchCurrentActionMap(_actionMaps[inputType].name);
     }
 
     public void OnClick()

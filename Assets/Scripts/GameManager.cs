@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Utils;
 
+[RequireComponent(typeof(PlayerInput))]
 public class GameManager : MonoBehaviour
 {
     public Float unstability;
@@ -30,10 +32,14 @@ public class GameManager : MonoBehaviour
     private Boolean isSpawnCoroutineActive;
     
     public Difficulty difficulty;
-    
+
+    private InputManager _inputManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        _inputManager = GetComponent<InputManager>();
+        
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
         startPanel.SetActive(true);
@@ -113,6 +119,7 @@ public class GameManager : MonoBehaviour
     private void PauseGame()
     {
         state = "idle";
+        _inputManager.ToggleActionMap(InputType.UI);
         isSpawnCoroutineActive = false;
         StopCoroutine(spawnRoutine);
     }
@@ -127,6 +134,7 @@ public class GameManager : MonoBehaviour
     {
         startPanel.SetActive(false);
         state = "play";
+        _inputManager.ToggleActionMap(InputType.Player);
     }
 
     IEnumerator spawnWave()
