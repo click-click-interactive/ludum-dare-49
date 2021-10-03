@@ -26,4 +26,23 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+
+    public void OnClick()
+    {
+        if (!Camera.main) return;
+        if (!Mouse.current.leftButton.wasReleasedThisFrame) return;
+        
+        Debug.Log(Mouse.current.position.ReadValue());
+
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out var hit))
+        {
+            if (hit.collider != null)
+            {
+                Debug.Log("CLICKED " + hit.collider.gameObject.name);
+                hit.collider.gameObject.SendMessage("OnClick");
+            }
+        }
+    }
 }

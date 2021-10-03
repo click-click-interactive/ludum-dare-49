@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
@@ -66,6 +65,12 @@ public class RepairStationController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnClick()
+    {
+        Debug.Log("Clicked on repair station");
+        Die();
     }
 
     public void Die()

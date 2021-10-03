@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Station",
+                    "name": "Click",
                     "type": "Button",
                     "id": "178ab8d5-210e-47e1-b4ae-b07608b677c0",
                     "expectedControlType": "Button",
@@ -261,12 +261,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f0a5813e-cb88-4de9-a569-4334aeacd3fa",
+                    "id": "8d8494f8-a491-4fd3-84fa-eeb2fa0605d1",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Station",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
