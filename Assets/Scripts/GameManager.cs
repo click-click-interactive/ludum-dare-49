@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,19 +15,38 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
 
     public GameObject defeatPanel;
-    
+
+    private RepairmanSpawner[] repairmanSpawnerArray;
+
+    public int spawnWaveSize = 3;
+
+    public float spawnWaveIntervalSeconds = 3f;
+
+    private string state = "idle";
+
+    private IEnumerator spawnRoutine;
+
+    private Boolean isSpawnCoroutineActive;
     // Start is called before the first frame update
     void Start()
     {
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
+        startPanel.SetActive(true);
         unstability.value = unstability.initialValue;
+
+        repairmanSpawnerArray = GetComponentsInChildren<RepairmanSpawner>();
+        isSpawnCoroutineActive = false;
+        spawnRoutine = spawnWave();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        UpdateUnstability();
+        if (state == "play")
+        {
+            UpdateUnstability();
+        }
     }
 
     private void UpdateUnstability()
@@ -43,22 +64,52 @@ public class GameManager : MonoBehaviour
             OnDefeat();
         }
     }
-
     void OnVictory()
     {
         Debug.Log("KA-BOOM");
+        PauseGame();
+        
         victoryPanel.SetActive(true);
     }
-    
     void OnDefeat()
     {
         Debug.Log("CRISIS AVERTED, YOU LOST");
+        PauseGame();
         defeatPanel.SetActive(true);
     }
-    
+
+    private void PauseGame()
+    {
+        state = "idle";
+        isSpawnCoroutineActive = false;
+        StopCoroutine(spawnRoutine);
+    }
     public void OnRestartClick()
     {
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void OnPlayClick()
+    {
+        startPanel.SetActive(false);
+        state = "play";
+    }
+
+    IEnumerator spawnWave()
+    {
+        while (state == "play")
+        {
+            
+            foreach (RepairmanSpawner repairmanSpawner in repairmanSpawnerArray)
+            {
+                for (int i = 0; i < spawnWaveSize; i++)
+                {
+                    repairmanSpawner.spawnRepairman();
+                }
+            }
+            yield return new WaitForSeconds(spawnWaveIntervalSeconds);
+        }
+        
     }
 }

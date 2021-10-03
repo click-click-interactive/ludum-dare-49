@@ -20,8 +20,7 @@ public class RepairStationController : MonoBehaviour
         if (unstability.value <= gameplayConfig.maxUnstability && unstability.value >= gameplayConfig.minUnstability)
         {
             unstability.value -= (gameplayConfig.workerFixScore * nearbyRepairmen.Count) * Time.fixedDeltaTime;    
-        }
-        
+        }   
     }
 
     private void OnTriggerEnter(Collider other)
