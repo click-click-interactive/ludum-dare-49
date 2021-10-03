@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
 
     public GameObject defeatPanel;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,11 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
+    {
+        UpdateUnstability();
+    }
+
+    private void UpdateUnstability()
     {
         if (unstability.value <= gameplayConfig.maxUnstability && unstability.value >= gameplayConfig.minUnstability)
         {
@@ -35,18 +41,21 @@ public class GameManager : MonoBehaviour
         if (unstability.value <= gameplayConfig.minUnstability)
         {
             OnDefeat();
-        }        
+        }
     }
+
     void OnVictory()
     {
         Debug.Log("KA-BOOM");
         victoryPanel.SetActive(true);
     }
+    
     void OnDefeat()
     {
         Debug.Log("CRISIS AVERTED, YOU LOST");
         defeatPanel.SetActive(true);
     }
+    
     public void OnRestartClick()
     {
         Scene scene = SceneManager.GetActiveScene(); 

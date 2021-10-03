@@ -1,22 +1,18 @@
-﻿using System.Collections;
-using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 using Random = System.Random;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class RepairmanController : MonoBehaviour
 {
-    public float speed = 3.0f;
-    
-    [CanBeNull] private GameObject targetRepairStation;
-    private bool isNearStation;
-    private Rigidbody2D _rigidbody2D;
+    private GameObject _targetRepairStation;
+    private bool _isNearStation;
+    private NavMeshAgent _navMeshAgent;
 
     private const string RepairStationsTag = "RepairStation";
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         
         var random = new Random();
         var repairStations = GameObject.FindGameObjectsWithTag(RepairStationsTag);
@@ -24,9 +20,9 @@ public class RepairmanController : MonoBehaviour
         if (repairStations.Length > 0)
         {
             var selected = random.Next(repairStations.Length);
-            targetRepairStation = repairStations[selected];
+            _targetRepairStation = repairStations[selected];
 
-            StartCoroutine(GoToStation());
+            _navMeshAgent.destination = _targetRepairStation.transform.position;
         }
         else
         {
@@ -34,44 +30,27 @@ public class RepairmanController : MonoBehaviour
         }
     }
 
-    private IEnumerator GoToStation()
+    private void Update()
     {
-        var timeElapsed = 0.0f;
-        
-        while (!isNearStation)
+        if (_isNearStation)
         {
-            _rigidbody2D.MovePosition(Vector2.Lerp(transform.position, targetRepairStation.transform.position, timeElapsed / speed));
-            timeElapsed = Time.fixedDeltaTime;
-
-            yield return new WaitForFixedUpdate();
+            _navMeshAgent.destination = transform.position;
+        }
+        else
+        {
+            _navMeshAgent.destination = _targetRepairStation.transform.position;
         }
     }
 
-    public void OnDetected()
+    public void OnEnterStation()
     {
         Debug.Log("NPC arrived to repair station");
-        isNearStation = true;
+        _isNearStation = true;
     }
 
-    /* private void OnTriggerEnter2D(Collider2D other)
+    public void OnLeaveStation()
     {
-        if (other.CompareTag("RepairStation") && !isNearStation)
-        {
-            Debug.Log("NPC arrived to repair station");
-            isNearStation = true;
-        }
-    }*/
-
-    private void OnDrawGizmos()
-    {
-        var position = transform.position;
-        var zAxis = transform.rotation.eulerAngles.z;
-
-        var direction = new Vector2(-Mathf.Sin(zAxis * Mathf.Deg2Rad),  Mathf.Cos(zAxis * Mathf.Deg2Rad));
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(position , position + (Vector3) direction);
-        
-        Debug.Log(direction);
+        Debug.Log("Repairman leaves repair station");
+        _isNearStation = false;
     }
 }

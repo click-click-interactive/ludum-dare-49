@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
@@ -24,9 +25,9 @@ public class RepairStationController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("NPC"))
+        if (other.gameObject.CompareTag("Repairman"))
         {
             if (!nearbyRepairmen.Contains(other.gameObject))
             {
@@ -34,7 +35,7 @@ public class RepairStationController : MonoBehaviour
                 
                 if (repairman != null)
                 {
-                    repairman.OnDetected();
+                    repairman.OnEnterStation();
                 }
                 else
                 {
@@ -46,13 +47,19 @@ public class RepairStationController : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerExit2D(Collider2D other)
-    { 
-        if (other.gameObject.CompareTag("NPC"))
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Repairman"))
         {
             if (nearbyRepairmen.Contains(other.gameObject))
             {
+                var repairman = other.GetComponent<RepairmanController>();
+
+                if (repairman)
+                {
+                    repairman.OnLeaveStation();
+                }
+                
                 if (!nearbyRepairmen.Remove(other.gameObject))
                 {
                     Debug.LogWarning("Failed to remove object from repairmen Set");
@@ -60,7 +67,6 @@ public class RepairStationController : MonoBehaviour
             }
         }
     }
-
 
     public void Die()
     {
@@ -70,6 +76,6 @@ public class RepairStationController : MonoBehaviour
             nearbyRepairmen.Remove(nearbyRepairmen[i]);
             Destroy(repairmanToDestroy);
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
