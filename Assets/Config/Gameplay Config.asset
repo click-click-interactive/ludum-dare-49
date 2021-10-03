@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Gameplay Config
   m_EditorClassIdentifier: 
   minUnstability: 0
-  maxUnstability: 100
-  unstabilityPerSecond: 5
-  workerFixScore: 1
+  maxUnstability: 1000
+  unstabilityPerSecond: 32
+  workerFixScore: 4
   easyThreshold: 25
   mediumThreshold: 50
   hardThreshold: 75
