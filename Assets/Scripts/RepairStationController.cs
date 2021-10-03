@@ -68,7 +68,6 @@ public class RepairStationController : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("Clicked on repair station");
         Die();
     }
 

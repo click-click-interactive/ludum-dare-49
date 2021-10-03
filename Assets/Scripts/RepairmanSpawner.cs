@@ -21,7 +21,6 @@ public class RepairmanSpawner : MonoBehaviour
 
     public void spawnRepairman()
     {
-        Debug.Log("instantiate");
         var position = transform.position + Random.insideUnitSphere * spawnRadius;
         Instantiate(repairmanPrefab, position, new Quaternion());
     }

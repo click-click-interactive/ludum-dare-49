@@ -1,22 +1,27 @@
-using System;
-using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
 
 public class RepairmanController : MonoBehaviour
 {
+    
+    public int totalHitPoints = 5;
+    public Material hurtMaterial;
+    
     private GameObject _targetRepairStation;
     private bool _isNearStation;
     private NavMeshAgent _navMeshAgent;
 
     private const string RepairStationsTag = "RepairStation";
     private static Random random = new Random();
+    private int _hitPoints;
+    private Material _originalMaterial;
 
     private void Start()
     {
+        _hitPoints = totalHitPoints;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
         FindTargetRepairStation();
     }
 
@@ -39,7 +44,6 @@ public class RepairmanController : MonoBehaviour
     {
         if (_targetRepairStation == null)
         {
-            Debug.Log("finding new station");
             FindTargetRepairStation();
         }
         if (_isNearStation)
@@ -68,5 +72,22 @@ public class RepairmanController : MonoBehaviour
     {
         Debug.Log("Repairman leaves repair station");
         _isNearStation = false;
+    }
+
+    public void OnClick()
+    {
+        _hitPoints--;
+        Debug.Log("Ouch ! " + _hitPoints + "/" + totalHitPoints + " hp");
+        gameObject.GetComponent<MeshRenderer>().material = hurtMaterial;
+        Invoke(nameof(RestoreMaterial), 0.1f);
+        if (_hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void RestoreMaterial()
+    {
+        gameObject.GetComponent<MeshRenderer>().material = _originalMaterial;
     }
 }

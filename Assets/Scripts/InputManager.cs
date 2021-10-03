@@ -33,8 +33,6 @@ public class InputManager : MonoBehaviour
     {
         if (!Camera.main) return;
         if (!Mouse.current.leftButton.wasReleasedThisFrame) return;
-        
-        Debug.Log(Mouse.current.position.ReadValue());
 
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 

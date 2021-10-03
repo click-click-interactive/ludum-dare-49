@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
 
     void OnVictory()
     {
-        Debug.Log("KA-BOOM");
         PauseGame();
         
         victoryPanel.SetActive(true);
@@ -111,7 +110,6 @@ public class GameManager : MonoBehaviour
     
     void OnDefeat()
     {
-        Debug.Log("CRISIS AVERTED, YOU LOST");
         PauseGame();
         defeatPanel.SetActive(true);
     }

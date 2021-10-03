@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7456d09cfb4315bf511f7b2f4c2d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalHitPoints: 5
+  hurtMaterial: {fileID: 2100000, guid: aabc5c3262e5a5b4d8f58d78be65c89f, type: 2}
 --- !u!195 &2487627518475049529
 NavMeshAgent:
   m_ObjectHideFlags: 0
