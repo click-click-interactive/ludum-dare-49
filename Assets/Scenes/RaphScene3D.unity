@@ -549,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3180421949487646264, guid: 16444fc2978590941b2cd5ba88593817, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3180421949487646264, guid: 16444fc2978590941b2cd5ba88593817, type: 3}
       propertyPath: m_AnchorMax.x
@@ -701,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 1233861079}
     - target: {fileID: 6602523574165269071, guid: 16444fc2978590941b2cd5ba88593817, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6602523574165269071, guid: 16444fc2978590941b2cd5ba88593817, type: 3}
       propertyPath: m_PlaneDistance
@@ -1917,7 +1917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1162978724945366379, guid: 43a61842ce070764ead3fc2b8e6ca7d3, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1162978724945366379, guid: 43a61842ce070764ead3fc2b8e6ca7d3, type: 3}
       propertyPath: m_AnchorMax.x
