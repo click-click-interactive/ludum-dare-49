@@ -10,14 +10,16 @@ public class RepairStationController : MonoBehaviour
     public GameplayConfig gameplayConfig;
     public Bool isCryostasisActive;
     public bool isWorking = true;
-    public Material disabledMaterial;
-    private Material _originalMaterial;
+    public Material offMaterial;
+    public Material unusedMaterial;
+    public Material usedMaterial;
+    public GameObject lightBulb;
 
     // Start is called before the first frame update
     void Start()
     {
         nearbyRepairmen = new List<GameObject>();
-        _originalMaterial = GetComponent<MeshRenderer>().material;
+        UpdateLightBulb();
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class RepairStationController : MonoBehaviour
                 unstability.value -= (gameplayConfig.workerFixScore * nearbyRepairmen.Count) * Time.fixedDeltaTime;    
             }     
         }
-         
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,8 +52,10 @@ public class RepairStationController : MonoBehaviour
                 }
                 
                 nearbyRepairmen.Add(other.gameObject);
+                
             }
         }
+        UpdateLightBulb();
     }
 
     private void OnTriggerExit(Collider other)
@@ -72,22 +75,40 @@ public class RepairStationController : MonoBehaviour
                 {
                     Debug.LogWarning("Failed to remove object from repairmen Set");
                 }
+                
             }
         }
+        UpdateLightBulb();
     }
 
     public void OnAction(Skill selectedSkill)
     {
         isWorking = false;
         KillAllWorkers();
-        GetComponent<MeshRenderer>().material = disabledMaterial;
+        UpdateLightBulb();
         Invoke(nameof(RestartStation), selectedSkill.SkillDuration);
     }
 
     private void RestartStation()
     {
         isWorking = true;
-        GetComponent<MeshRenderer>().material = _originalMaterial;
+        UpdateLightBulb();
+    }
+
+    private void UpdateLightBulb()
+    {
+        if (!isWorking)
+        {
+            lightBulb.GetComponent<MeshRenderer>().material = offMaterial;
+        }
+        else if (nearbyRepairmen.Count > 0)
+        {
+            lightBulb.GetComponent<MeshRenderer>().material = usedMaterial;    
+        }
+        else
+        {
+            lightBulb.GetComponent<MeshRenderer>().material = unusedMaterial;    
+        }
     }
 
     public void KillAllWorkers()

@@ -24,4 +24,4 @@ MonoBehaviour:
   overloadCost: 5
   overloadDuration: 5
   doorJamCost: 10
-  doorJamDuration: 5
+  doorJamDuration: 10
