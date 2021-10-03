@@ -9,5 +9,8 @@ namespace ScriptableObjects
         public int maxUnstability = 100;
         public float unstabilityPerSecond;
         public int workerFixScore;
+        public float easyThreshold = 25;
+        public float mediumThreshold = 50;
+        public float hardThreshold = 75;
     }
 }

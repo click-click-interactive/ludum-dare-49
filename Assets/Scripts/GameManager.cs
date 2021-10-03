@@ -3,6 +3,7 @@ using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator spawnRoutine;
 
     private Boolean isSpawnCoroutineActive;
+    
+    public Difficulty difficulty;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +55,27 @@ public class GameManager : MonoBehaviour
                 isSpawnCoroutineActive = true;
             }
             UpdateUnstability();
+            UpdateDifficulty();
+        }
+    }
+
+    private void UpdateDifficulty()
+    {
+        if (Predicate.Between(unstability.value, gameplayConfig.minUnstability, gameplayConfig.easyThreshold))
+        {
+            difficulty = Difficulty.Basic;
+        }
+        else if (Predicate.Between(unstability.value, gameplayConfig.easyThreshold, gameplayConfig.mediumThreshold))
+        {
+            difficulty = Difficulty.Easy;
+        }
+        else if (Predicate.Between(unstability.value, gameplayConfig.mediumThreshold, gameplayConfig.hardThreshold))
+        {
+            difficulty = Difficulty.Medium;
+        }
+        else if (Predicate.Between(unstability.value, gameplayConfig.hardThreshold, gameplayConfig.maxUnstability))
+        {
+            difficulty = Difficulty.Hard;
         }
     }
 
@@ -69,6 +94,7 @@ public class GameManager : MonoBehaviour
             OnDefeat();
         }
     }
+
     void OnVictory()
     {
         Debug.Log("KA-BOOM");
@@ -76,6 +102,7 @@ public class GameManager : MonoBehaviour
         
         victoryPanel.SetActive(true);
     }
+    
     void OnDefeat()
     {
         Debug.Log("CRISIS AVERTED, YOU LOST");
@@ -89,6 +116,7 @@ public class GameManager : MonoBehaviour
         isSpawnCoroutineActive = false;
         StopCoroutine(spawnRoutine);
     }
+    
     public void OnRestartClick()
     {
         Scene scene = SceneManager.GetActiveScene(); 
@@ -115,6 +143,5 @@ public class GameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnWaveIntervalSeconds);
         }
-        
     }
 }
