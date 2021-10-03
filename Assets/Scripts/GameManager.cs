@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Utils;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
 
     public GameObject defeatPanel;
+
+    public GameObject skillPanel;
+
+    public GameObject unstabilityBar;
 
     private RepairmanSpawner[] repairmanSpawnerArray;
 
@@ -36,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     private InputManager _inputManager;
 
+    public Skill skill = null;
+
     public Bool isCryostasisActive;
     // Start is called before the first frame update
     void Start()
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
         
         victoryPanel.SetActive(false);
         defeatPanel.SetActive(false);
+        skillPanel.SetActive(false);
+        unstabilityBar.SetActive(false);
         startPanel.SetActive(true);
         unstability.value = unstability.initialValue;
 
@@ -127,6 +135,7 @@ public class GameManager : MonoBehaviour
         state = "idle";
         _inputManager.ToggleActionMap(InputType.UI);
         isSpawnCoroutineActive = false;
+        skillPanel.SetActive(false);
         StopCoroutine(spawnRoutine);
     }
     
@@ -141,6 +150,46 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(false);
         state = "play";
         _inputManager.ToggleActionMap(InputType.Player);
+        unstabilityBar.SetActive(true);
+        skillPanel.SetActive(true);
+    }
+
+    public void OnOverloadClick()
+    {
+        if (unstability.value >= gameplayConfig.overloadCost)
+        {
+            Debug.Log("Electrical Overload selected");
+            unstability.value -= gameplayConfig.overloadCost;
+            skill = new Skill("Overload", "RepairStation", gameplayConfig.overloadCost, gameplayConfig.overloadDuration);
+        }
+    }
+
+    public void OnDoorJamClick()
+    {
+        if (unstability.value >= gameplayConfig.doorJamCost)
+        {
+            unstability.value -= gameplayConfig.doorJamCost;
+            Debug.Log("Door Jam selected");
+            skill = new Skill("DoorJam", "Spawner", gameplayConfig.doorJamCost, gameplayConfig.doorJamDuration);    
+        }
+    }
+
+    public void OnCryostasisClick()
+    {
+        if (unstability.value >= gameplayConfig.cryostasisCost && !isCryostasisActive.value)
+        {
+            Debug.Log("Cryostasis activated");
+            unstability.value -= gameplayConfig.cryostasisCost;
+            isCryostasisActive.value = true;
+            
+            Invoke(nameof(disableCryostasis), gameplayConfig.cryostasisDuration);
+            skill = null;
+        }
+        else
+        {
+            Debug.Log("Could not cast cryostasis");
+        }
+        
     }
 
     IEnumerator spawnWave()
@@ -157,23 +206,6 @@ public class GameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnWaveIntervalSeconds);
         }
-    }
-
-    public void TryCastCryostasis()
-    {
-        if (unstability.value >= gameplayConfig.cryostasisCost && !isCryostasisActive.value)
-        {
-            Debug.Log("Cryostasis activated");
-            unstability.value -= gameplayConfig.cryostasisCost;
-            isCryostasisActive.value = true;
-            
-            Invoke(nameof(disableCryostasis), gameplayConfig.cryostasisDuration);
-        }
-        else
-        {
-            Debug.Log("Could not cast cryostasis");
-        }
-        
     }
 
     private void disableCryostasis()

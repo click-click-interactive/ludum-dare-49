@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Gameplay Config
   m_EditorClassIdentifier: 
   minUnstability: 0
-  maxUnstability: 1000
-  unstabilityPerSecond: 32
-  workerFixScore: 4
+  maxUnstability: 100
+  unstabilityPerSecond: 1
+  workerFixScore: 0
   easyThreshold: 25
   mediumThreshold: 50
   hardThreshold: 75
   cryostasisCost: 5
   cryostasisDuration: 5
+  overloadCost: 5
+  overloadDuration: 5
+  doorJamCost: 10
+  doorJamDuration: 5

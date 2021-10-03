@@ -14,5 +14,9 @@ namespace ScriptableObjects
         public float hardThreshold = 75;
         public float cryostasisCost = 30;
         public float cryostasisDuration = 5.0f;
+        public float overloadCost = 5;
+        public float overloadDuration = 5.0f;
+        public float doorJamCost = 10;
+        public float doorJamDuration = 5.0f;
     }
 }

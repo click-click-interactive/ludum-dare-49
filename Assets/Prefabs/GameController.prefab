@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5449043167905242795}
   - component: {fileID: 5449043167905242796}
+  - component: {fileID: 5306541570243044817}
+  - component: {fileID: 8829481244080938338}
   m_Layer: 0
   m_Name: RepairmanSpawner
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5449043167905242794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.58, y: 0, z: 0}
+  m_LocalPosition: {x: 5.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5449043168715321239}
@@ -45,6 +47,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repairmanPrefab: {fileID: 7946092461866046982, guid: 9db8a27064822e349913c4849c85f55c, type: 3}
   spawnRadius: 2
+  isCryostasisActive: {fileID: 0}
+--- !u!23 &5306541570243044817
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043167905242794}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100002, guid: efe9381559c516743bd05cef82f39ebb, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &8829481244080938338
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043167905242794}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5449043168172235385
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5449043168172235386}
   - component: {fileID: 5449043168172235387}
+  - component: {fileID: 3234956545708635050}
+  - component: {fileID: 7346476683896822055}
   m_Layer: 0
   m_Name: RepairmanSpawner (1)
   m_TagString: Spawner
@@ -70,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5449043168172235385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.58, y: -4.45, z: 0}
+  m_LocalPosition: {x: 7.49, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5449043168715321239}
@@ -90,6 +144,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repairmanPrefab: {fileID: 7946092461866046982, guid: 9db8a27064822e349913c4849c85f55c, type: 3}
   spawnRadius: 2
+  isCryostasisActive: {fileID: 0}
+--- !u!33 &3234956545708635050
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043168172235385}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7346476683896822055
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043168172235385}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100002, guid: efe9381559c516743bd05cef82f39ebb, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5449043168715321237
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c395a8a651e26d4f91d0269cbb4a89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayConfig: {fileID: 0}
+  unstability: {fileID: 0}
 --- !u!114 &5449043168715321256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +337,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dbea1992-0e42-45c8-8cdb-d7b63dabb9d9
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 831ffb3c-4ac1-42e0-b355-40e798d4b981
+    m_ActionName: Player/Cryostasis[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -253,9 +363,13 @@ MonoBehaviour:
   startPanel: {fileID: 0}
   victoryPanel: {fileID: 0}
   defeatPanel: {fileID: 0}
+  skillPanel: {fileID: 0}
+  unstabilityBar: {fileID: 0}
   spawnWaveSize: 1
   spawnWaveIntervalSeconds: 3
+  cryostasisButton: {fileID: 0}
   difficulty: 0
+  isCryostasisActive: {fileID: 0}
 --- !u!1 &5449043169667166057
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +380,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5449043169667166058}
   - component: {fileID: 5449043169667166059}
+  - component: {fileID: 3069571805144246083}
+  - component: {fileID: 8223808698001109879}
   m_Layer: 0
   m_Name: RepairmanSpawner (2)
   m_TagString: Spawner
@@ -281,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5449043169667166057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.58, y: 2.86, z: 0}
+  m_LocalPosition: {x: 11.26, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5449043168715321239}
@@ -301,3 +417,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repairmanPrefab: {fileID: 7946092461866046982, guid: 9db8a27064822e349913c4849c85f55c, type: 3}
   spawnRadius: 2
+  isCryostasisActive: {fileID: 0}
+--- !u!23 &3069571805144246083
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043169667166057}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100002, guid: efe9381559c516743bd05cef82f39ebb, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &8223808698001109879
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043169667166057}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}

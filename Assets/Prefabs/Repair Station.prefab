@@ -113,6 +113,8 @@ MonoBehaviour:
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
   gameplayConfig: {fileID: 11400000, guid: 5d2137678f7c09d4fafc6557c6c55883, type: 2}
   isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
+  isWorking: 1
+  disabledMaterial: {fileID: 2100000, guid: aabc5c3262e5a5b4d8f58d78be65c89f, type: 2}
 --- !u!54 &1028992643634534498
 Rigidbody:
   m_ObjectHideFlags: 0
