@@ -171,8 +171,10 @@ MonoBehaviour:
   defeatPanel: {fileID: 0}
   skillPanel: {fileID: 0}
   unstabilityBar: {fileID: 0}
-  spawnWaveSize: 4
-  spawnWaveIntervalSeconds: 2
+  spawnWaveSizeEasy: 3
+  spawnWaveSizeMedium: 5
+  spawnWaveSizeHard: 8
+  spawnWaveIntervalSeconds: 10
   currentDifficulty: {fileID: 11400000, guid: 497fabe6ee4ab3349934005f090c1177, type: 2}
   isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
   overloadSkillCursor: {fileID: 2800000, guid: 7bce557f27d3ecd4aa1e17715436d38d, type: 3}

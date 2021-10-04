@@ -58,8 +58,8 @@ MonoBehaviour:
   isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
   isWorking: 1
   offMaterial: {fileID: 2100000, guid: 21f4c008ae7ce114f81b67deeec8811c, type: 2}
-  unusedMaterial: {fileID: 2100000, guid: 97de46f5c3abb42468bb8b9308e573dd, type: 2}
-  usedMaterial: {fileID: 2100000, guid: 841d0e94cf03cd14697b8d981e95ceab, type: 2}
+  unusedMaterial: {fileID: 2100000, guid: fae14d3576b63584c92b7a67cdea06af, type: 2}
+  usedMaterial: {fileID: 2100000, guid: db0d6e534ac233c4fb962b908dd7606b, type: 2}
   lightBulb: {fileID: 2627018424952597638}
   overloadZoneTooltip: {fileID: 2145397943509444304}
   explosionRadius: 5
@@ -260,7 +260,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97de46f5c3abb42468bb8b9308e573dd, type: 2}
+  - {fileID: 2100000, guid: fae14d3576b63584c92b7a67cdea06af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

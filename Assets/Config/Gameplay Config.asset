@@ -17,14 +17,14 @@ MonoBehaviour:
   unstabilityPerSecond: 1
   workerFixScore: 0.2
   easyThreshold: 25
-  mediumThreshold: 30
+  mediumThreshold: 50
   hardThreshold: 75
-  cryostasisCost: 5
+  cryostasisCost: 20
   cryostasisDuration: 5
   overloadCost: 5
   overloadDuration: 5
-  doorJamCost: 0
+  doorJamCost: 10
   doorJamDuration: 10
-  waveSpawnQuatityEasy: 1
-  waveSpawnQuatityMedium: 2
-  waveSpawnQuatityHard: 4
+  waveSpawnQuatityEasy: 0
+  waveSpawnQuatityMedium: 6
+  waveSpawnQuatityHard: 10
