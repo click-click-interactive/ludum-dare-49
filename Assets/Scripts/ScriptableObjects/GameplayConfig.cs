@@ -18,5 +18,8 @@ namespace ScriptableObjects
         public float overloadDuration = 5.0f;
         public float doorJamCost = 10;
         public float doorJamDuration = 5.0f;
+        public int waveSpawnQuatityEasy = 4;
+        public int waveSpawnQuatityMedium = 8;
+        public int waveSpawnQuatityHard = 16;
     }
 }

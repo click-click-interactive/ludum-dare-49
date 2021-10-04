@@ -4,7 +4,6 @@ using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Utils;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private Boolean isSpawnCoroutineActive;
     
-    public Difficulty difficulty;
+    public DifficultyValue currentDifficulty;
 
     private InputManager _inputManager;
 
@@ -85,19 +84,19 @@ public class GameManager : MonoBehaviour
     {
         if (Predicate.Between(unstability.value, gameplayConfig.minUnstability, gameplayConfig.easyThreshold))
         {
-            difficulty = Difficulty.Basic;
+            currentDifficulty.value = Difficulty.Basic;
         }
         else if (Predicate.Between(unstability.value, gameplayConfig.easyThreshold, gameplayConfig.mediumThreshold))
         {
-            difficulty = Difficulty.Easy;
+            currentDifficulty.value = Difficulty.Easy;
         }
         else if (Predicate.Between(unstability.value, gameplayConfig.mediumThreshold, gameplayConfig.hardThreshold))
         {
-            difficulty = Difficulty.Medium;
+            currentDifficulty.value = Difficulty.Medium;
         }
         else if (Predicate.Between(unstability.value, gameplayConfig.hardThreshold, gameplayConfig.maxUnstability))
         {
-            difficulty = Difficulty.Hard;
+            currentDifficulty.value = Difficulty.Hard;
         }
     }
 
@@ -201,7 +200,7 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < spawnWaveSize; i++)
                 {
-                    repairmanSpawner.spawnRepairman();
+                    repairmanSpawner.SpawnRepairman();
                 }
             }
             yield return new WaitForSeconds(spawnWaveIntervalSeconds);
