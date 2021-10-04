@@ -19,6 +19,14 @@ public class RepairmanSpawner : MonoBehaviour
     public Material disabledMaterial;
     private Material _originalMaterial;
 
+    public GameObject leftDoorHinge;
+    public GameObject rightDoorHinge;
+    public GameObject spawnLocation;
+
+    private List<GameObject> workersInLobby = new List<GameObject>();
+
+    public GameObject doorJamTooltip;
+
     [Header("Wave Spawn")]
     [Tooltip("Delay in seconds before a wave spawn occurs again. Prevents spam if difficulty changes a lot in a short amount of time")]
     public float waveSpawnCooldown = 2f;
@@ -27,12 +35,20 @@ public class RepairmanSpawner : MonoBehaviour
     public DifficultyValue currentDifficulty;
     private Difficulty _previousDifficulty = Difficulty.Basic;
     private bool _waveSpawnLocked;
+    private Animator _leftHingeAnimator;
+    private Animator _rightHingeAnimator;
+    
 
     [Header("Game Config")] public GameplayConfig gameplayConfig;
+
+    private static readonly int IsOpen = Animator.StringToHash("isOpen");
+
     // Start is called before the first frame update
     void Start()
     {
-        _originalMaterial = GetComponent<MeshRenderer>().material;
+        _leftHingeAnimator = leftDoorHinge.GetComponent<Animator>();
+        _rightHingeAnimator = rightDoorHinge.GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -49,7 +65,6 @@ public class RepairmanSpawner : MonoBehaviour
 
             if (!_waveSpawnLocked)
             {
-                Debug.Log("Spawn wave for " + nameof(currentDifficulty.value) + " difficulty");
                 // wave spawn logic
                 StartCoroutine(LockWaveSpawn());
                 StartCoroutine(WaveSpawn(currentDifficulty.value));
@@ -68,11 +83,8 @@ public class RepairmanSpawner : MonoBehaviour
             _ => 0
         };
         
-        Debug.Log("Spawn " + spawnQuantity + " minions in wave");
-
         for (var i = 0; i < spawnQuantity; i++)
         {
-            Debug.Log("Spawn n°" + i);
             SpawnRepairman();
             yield return new WaitForSeconds(waveSpawnDelay);
         }
@@ -89,9 +101,9 @@ public class RepairmanSpawner : MonoBehaviour
 
     public void SpawnRepairman()
     {
-        if (!isCryostasisActive.value && isWorking)
+        if (!isCryostasisActive.value)
         {
-            var position = transform.position;
+            var position = spawnLocation.transform.position;
             var randomHorizontalPoint = Random.insideUnitCircle * spawnRadius;
             var spawnPosition = new Vector3(position.x + randomHorizontalPoint.x, position.y, position.z + randomHorizontalPoint.y);
             Instantiate(repairmanPrefab, spawnPosition, new Quaternion());    
@@ -100,20 +112,68 @@ public class RepairmanSpawner : MonoBehaviour
 
     public void OnAction(Skill selectedSkill)
     {
+        Debug.Log("Door received action");
         isWorking = false;
-        GetComponent<MeshRenderer>().material = disabledMaterial;
+        _leftHingeAnimator.SetBool(IsOpen, false);
+        _rightHingeAnimator.SetBool(IsOpen, false);
         Invoke(nameof(RestartDoor), selectedSkill.SkillDuration);
     }
 
     private void RestartDoor()
     {
         isWorking = true;
-        GetComponent<MeshRenderer>().material = _originalMaterial;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Repairman"))
+        {
+            if (!workersInLobby.Contains(other.gameObject))
+            {
+                workersInLobby.Add(other.gameObject);
+            }
+
+            if (isWorking)
+            {
+                if (_leftHingeAnimator.GetBool(IsOpen) != true)
+                {
+                    _leftHingeAnimator.SetBool(IsOpen, true);
+                }
+                if (_rightHingeAnimator.GetBool(IsOpen) != true)
+                {
+                    _rightHingeAnimator.SetBool(IsOpen, true);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Repairman"))
+        {
+            workersInLobby.Remove(other.gameObject);
+        }
+
+        if (workersInLobby.Count == 0)
+        {
+            _leftHingeAnimator.SetBool(IsOpen, false);
+            _rightHingeAnimator.SetBool(IsOpen, false);
+        }
+    }
+
+    private void ShowTooltip()
+    {
+        doorJamTooltip.SetActive(true);
+    }
+
+    private void HideTooltip()
+    {
+        doorJamTooltip.SetActive(false);
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minUnstability: 0
   maxUnstability: 100
-  unstabilityPerSecond: 1
-  workerFixScore: 1
+  unstabilityPerSecond: 0
+  workerFixScore: 0
   easyThreshold: 25
   mediumThreshold: 50
   hardThreshold: 75
@@ -23,7 +23,7 @@ MonoBehaviour:
   cryostasisDuration: 5
   overloadCost: 5
   overloadDuration: 5
-  doorJamCost: 10
+  doorJamCost: 0
   doorJamDuration: 10
   waveSpawnQuatityEasy: 4
   waveSpawnQuatityMedium: 8

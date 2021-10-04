@@ -32,9 +32,7 @@ public class InputManager : MonoBehaviour
         if (!Camera.main) return;
         ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if(Physics.Raycast(ray, out hit))
-        {
-            Debug.Log(hit.collider.name);
-            
+        {   
             if (hit.collider != null)
             {
                 GameManager gameManager = GetComponent<GameManager>();
@@ -82,8 +80,11 @@ public class InputManager : MonoBehaviour
                 {
                     if(hit.collider.gameObject.CompareTag(gameManager.skill.TargetTag))
                     {
-                        Debug.Log("Confirming select skill");
-                        hit.collider.gameObject.SendMessage("OnAction", gameManager.skill);
+                        Debug.Log("Confirming select skill " + gameManager.skill.Name );
+                        
+                        hit.collider.gameObject.SendMessage("OnAction", gameManager.skill);    
+                        
+                        
                         if (currentlyMousedOverObject != null)
                         {
                             hit.collider.gameObject.SendMessage("HideTooltip");
