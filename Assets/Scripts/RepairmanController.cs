@@ -87,6 +87,10 @@ public class RepairmanController : MonoBehaviour
         Invoke(nameof(RestoreMaterial), 0.1f);
         if (_hitPoints <= 0)
         {
+            if (_targetRepairStation != null)
+            {
+                _targetRepairStation.GetComponent<RepairStationController>().notifyWorkerDeath(this.gameObject);
+            }
             Destroy(gameObject);
         }
     }

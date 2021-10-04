@@ -146,4 +146,11 @@ public class RepairStationController : MonoBehaviour
     {
         overloadZoneTooltip.SetActive(false);
     }
+
+
+    public void notifyWorkerDeath(GameObject worker)
+    {
+        bool ok = nearbyRepairmen.Remove(worker);
+        Debug.Log("removed worker : " + ok);
+    }
 }
