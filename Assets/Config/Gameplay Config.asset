@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minUnstability: 0
   maxUnstability: 100
-  unstabilityPerSecond: 0
+  unstabilityPerSecond: 1
   workerFixScore: 0.2
   easyThreshold: 25
   mediumThreshold: 30
