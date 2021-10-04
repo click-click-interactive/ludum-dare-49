@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
 
     private RepairmanSpawner[] repairmanSpawnerArray;
 
-    public int spawnWaveSize = 3;
+    public int spawnWaveSizeEasy = 3;
+    public int spawnWaveSizeMedium = 6;
+    public int spawnWaveSizeHard = 12;
 
     public float spawnWaveIntervalSeconds = 3f;
 
@@ -246,7 +248,15 @@ public class GameManager : MonoBehaviour
             
             foreach (RepairmanSpawner repairmanSpawner in repairmanSpawnerArray)
             {
-                for (int i = 0; i < spawnWaveSize; i++)
+                int waveSize = spawnWaveSizeEasy;
+                if (currentDifficulty.value == Difficulty.Medium)
+                {
+                    waveSize = spawnWaveSizeMedium;
+                } else if (currentDifficulty.value == Difficulty.Hard)
+                {
+                    waveSize = spawnWaveSizeHard;
+                }
+                for (int i = 0; i < waveSize; i++)
                 {
                     repairmanSpawner.SpawnRepairman();
                 }
