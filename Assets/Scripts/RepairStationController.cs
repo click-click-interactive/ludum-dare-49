@@ -14,12 +14,20 @@ public class RepairStationController : MonoBehaviour
     public Material unusedMaterial;
     public Material usedMaterial;
     public GameObject lightBulb;
-
+    public GameObject overloadZoneTooltip;
+    public float explosionRadius = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
         nearbyRepairmen = new List<GameObject>();
         UpdateLightBulb();
+    }
+    
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        Gizmos.DrawWireSphere (transform.position , explosionRadius);
     }
 
     // Update is called once per frame
@@ -84,7 +92,7 @@ public class RepairStationController : MonoBehaviour
     public void OnAction(Skill selectedSkill)
     {
         isWorking = false;
-        KillAllWorkers();
+        KillAllWorkersInRadius();
         UpdateLightBulb();
         Invoke(nameof(RestartStation), selectedSkill.SkillDuration);
     }
@@ -111,13 +119,32 @@ public class RepairStationController : MonoBehaviour
         }
     }
 
-    public void KillAllWorkers()
+    public void KillAllWorkersInRadius()
     {
-        for (int i = nearbyRepairmen.Count -1; i >= 0; i--)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        for (int i = colliders.Length - 1; i >= 0; i--)
         {
-            GameObject repairmanToDestroy = nearbyRepairmen[i];
-            nearbyRepairmen.Remove(nearbyRepairmen[i]);
-            Destroy(repairmanToDestroy);
+            Collider col = colliders[i];
+            if (nearbyRepairmen.Contains(col.gameObject))
+            {
+                nearbyRepairmen.Remove(col.gameObject);
+            }
+
+            if (col.gameObject.CompareTag("Repairman"))
+            {
+                Destroy(col.gameObject);    
+            }
         }
+    }
+    
+    private void ShowTooltip()
+    {
+        overloadZoneTooltip.SetActive(true);
+    }
+
+    private void HideTooltip()
+    {
+        overloadZoneTooltip.SetActive(false);
     }
 }

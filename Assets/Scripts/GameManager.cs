@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     public Skill skill = null;
 
     public Bool isCryostasisActive;
+    public Texture2D overloadSkillCursor;
+
+    public Texture2D doorJamSkillCursor;
     // Start is called before the first frame update
     void Start()
     {
@@ -131,6 +134,7 @@ public class GameManager : MonoBehaviour
 
     private void PauseGame()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         state = "idle";
         _inputManager.ToggleActionMap(InputType.UI);
         isSpawnCoroutineActive = false;
@@ -157,6 +161,7 @@ public class GameManager : MonoBehaviour
     {
         if (unstability.value >= gameplayConfig.overloadCost)
         {
+            Cursor.SetCursor(overloadSkillCursor, Vector2.zero, CursorMode.Auto);
             Debug.Log("Electrical Overload selected");
             unstability.value -= gameplayConfig.overloadCost;
             skill = new Skill("Overload", "RepairStation", gameplayConfig.overloadCost, gameplayConfig.overloadDuration);
@@ -167,6 +172,7 @@ public class GameManager : MonoBehaviour
     {
         if (unstability.value >= gameplayConfig.doorJamCost)
         {
+            Cursor.SetCursor(doorJamSkillCursor, Vector2.zero, CursorMode.Auto);
             unstability.value -= gameplayConfig.doorJamCost;
             Debug.Log("Door Jam selected");
             skill = new Skill("DoorJam", "Spawner", gameplayConfig.doorJamCost, gameplayConfig.doorJamDuration);    

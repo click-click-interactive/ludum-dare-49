@@ -11,7 +11,10 @@ public class InputManager : MonoBehaviour
     private PlayerInput _playerInput;
     private Dictionary<InputType, InputActionMap> _actionMaps;
     public Float unstability;
-
+    private GameObject currentlyMousedOverObject = null;
+    
+    Ray ray;
+    RaycastHit hit;
     void Start()
     {
         _playerInput = gameObject.GetComponent<PlayerInput>();
@@ -21,6 +24,34 @@ public class InputManager : MonoBehaviour
         {
             _actionMaps.Add(InputType.Player, _playerInput.actions.FindActionMap("Player"));
             _actionMaps.Add(InputType.UI, _playerInput.actions.FindActionMap("UI"));
+        }
+    }
+    
+    void FixedUpdate()
+    {
+        if (!Camera.main) return;
+        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if(Physics.Raycast(ray, out hit))
+        {
+            Debug.Log(hit.collider.name);
+            
+            if (hit.collider != null)
+            {
+                GameManager gameManager = GetComponent<GameManager>();
+                if (gameManager.skill != null)
+                {
+                    if(hit.collider.gameObject.CompareTag(gameManager.skill.TargetTag))
+                    {
+                        currentlyMousedOverObject = hit.collider.gameObject;
+                        hit.collider.gameObject.SendMessage("ShowTooltip");
+                    }
+                    else if(currentlyMousedOverObject != null)
+                    {
+                        currentlyMousedOverObject.SendMessage("HideTooltip");
+                        currentlyMousedOverObject = null;
+                    }
+                }
+            }
         }
     }
 
@@ -33,6 +64,7 @@ public class InputManager : MonoBehaviour
 
     public void OnClick()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         if (!Camera.main) return;
         if (!Mouse.current.leftButton.wasReleasedThisFrame) return;
 
@@ -52,12 +84,16 @@ public class InputManager : MonoBehaviour
                     {
                         Debug.Log("Confirming select skill");
                         hit.collider.gameObject.SendMessage("OnAction", gameManager.skill);
+                        if (currentlyMousedOverObject != null)
+                        {
+                            hit.collider.gameObject.SendMessage("HideTooltip");
+                        }
+                        gameManager.skill = null;
                     }
                     else
                     {
                         if (gameManager.skill != null)
                         {
-                            Debug.Log("Removing selected skill");
                             unstability.value += gameManager.skill.UnstabilityCost;
                             gameManager.skill = null;
                         }
