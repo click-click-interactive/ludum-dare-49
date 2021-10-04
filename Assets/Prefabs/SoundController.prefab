@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4267918691812089013}
   - component: {fileID: 9151940372950898877}
-  - component: {fileID: 8824976638035580669}
+  - component: {fileID: 8433553067522370369}
   m_Layer: 0
   m_Name: SoundController
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overloadSFX: {fileID: 8300000, guid: 3b0bfd0e78bde564cb487f54fe57ce0f, type: 3}
   cryostasisSFX: {fileID: 8300000, guid: f13f4fc3f7713f14aac37c9fd1f38ac2, type: 3}
---- !u!82 &8824976638035580669
+--- !u!82 &8433553067522370369
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
