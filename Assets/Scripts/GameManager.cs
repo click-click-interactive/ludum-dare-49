@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,6 +46,19 @@ public class GameManager : MonoBehaviour
     public Texture2D overloadSkillCursor;
 
     public Texture2D doorJamSkillCursor;
+
+    public SoundController soundController;
+
+    public AnimationController animationController;
+
+    public CameraShake cameraShakeBehavior;
+
+    [Header("Difficulty levels")]
+    public List<RepairStationController> mediumRepairStations;
+    public List<RepairStationController> hardRepairStations;
+
+    private bool _hasReachedMedium;
+    private bool _hasReachedHard;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,10 +110,26 @@ public class GameManager : MonoBehaviour
         else if (Predicate.Between(unstability.value, gameplayConfig.mediumThreshold, gameplayConfig.hardThreshold))
         {
             currentDifficulty.value = Difficulty.Medium;
+
+            if (!_hasReachedMedium)
+            {
+                foreach (var station in mediumRepairStations)
+                {
+                    station.isWorking = true;
+                }
+            }
         }
         else if (Predicate.Between(unstability.value, gameplayConfig.hardThreshold, gameplayConfig.maxUnstability))
         {
             currentDifficulty.value = Difficulty.Hard;
+            
+            if (!_hasReachedHard)
+            {
+                foreach (var station in hardRepairStations)
+                {
+                    station.isWorking = true;
+                }
+            }
         }
     }
 
@@ -157,13 +187,25 @@ public class GameManager : MonoBehaviour
         skillPanel.SetActive(true);
     }
 
+    public void OnOverload(GameObject target)
+    {
+        unstability.value -= gameplayConfig.overloadCost;
+        cameraShakeBehavior.ShakeCamera();
+        animationController.CastOverload(target.transform.position);
+        soundController.OnOverload();
+    }
+
+    public void OnDoorJam(GameObject target)
+    {
+        unstability.value -= gameplayConfig.doorJamCost;
+    }
+
     public void OnOverloadClick()
     {
         if (unstability.value >= gameplayConfig.overloadCost)
         {
             Cursor.SetCursor(overloadSkillCursor, Vector2.zero, CursorMode.Auto);
             Debug.Log("Electrical Overload selected");
-            unstability.value -= gameplayConfig.overloadCost;
             skill = new Skill("Overload", "RepairStation", gameplayConfig.overloadCost, gameplayConfig.overloadDuration);
         }
     }
@@ -173,7 +215,6 @@ public class GameManager : MonoBehaviour
         if (unstability.value >= gameplayConfig.doorJamCost)
         {
             Cursor.SetCursor(doorJamSkillCursor, Vector2.zero, CursorMode.Auto);
-            unstability.value -= gameplayConfig.doorJamCost;
             Debug.Log("Door Jam selected");
             skill = new Skill("DoorJam", "Spawner", gameplayConfig.doorJamCost, gameplayConfig.doorJamDuration);    
         }
@@ -186,6 +227,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Cryostasis activated");
             unstability.value -= gameplayConfig.cryostasisCost;
             isCryostasisActive.value = true;
+            soundController.OnCryostasis();
             
             Invoke(nameof(disableCryostasis), gameplayConfig.cryostasisDuration);
             skill = null;

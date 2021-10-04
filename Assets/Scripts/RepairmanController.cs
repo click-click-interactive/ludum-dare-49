@@ -1,3 +1,4 @@
+using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -29,7 +30,10 @@ public class RepairmanController : MonoBehaviour
 
     private void FindTargetRepairStation()
     {
-        var repairStations = GameObject.FindGameObjectsWithTag(RepairStationsTag);
+        var repairStations = GameObject.FindGameObjectsWithTag(RepairStationsTag)
+            .Where(s => s.GetComponent<RepairStationController>() != null && s.GetComponent<RepairStationController>().isWorking)
+            .ToArray();
+        
         if (repairStations.Length > 0)
         {
             var selected = random.Next(repairStations.Length);

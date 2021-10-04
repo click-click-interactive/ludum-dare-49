@@ -15,9 +15,9 @@ MonoBehaviour:
   minUnstability: 0
   maxUnstability: 100
   unstabilityPerSecond: 0
-  workerFixScore: 0
+  workerFixScore: 0.2
   easyThreshold: 25
-  mediumThreshold: 50
+  mediumThreshold: 30
   hardThreshold: 75
   cryostasisCost: 5
   cryostasisDuration: 5
@@ -25,6 +25,6 @@ MonoBehaviour:
   overloadDuration: 5
   doorJamCost: 0
   doorJamDuration: 10
-  waveSpawnQuatityEasy: 4
-  waveSpawnQuatityMedium: 8
-  waveSpawnQuatityHard: 16
+  waveSpawnQuatityEasy: 1
+  waveSpawnQuatityMedium: 2
+  waveSpawnQuatityHard: 4

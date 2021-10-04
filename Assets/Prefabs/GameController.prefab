@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5449043168715321238}
   - component: {fileID: 5449043168715321256}
   - component: {fileID: 5449043168715321257}
+  - component: {fileID: 1687339966}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unstability: {fileID: 11400000, guid: 4f96eb4893111f14f9c0fea30656d397, type: 2}
+  gameManager: {fileID: 0}
 --- !u!114 &5449043168715321256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +189,49 @@ MonoBehaviour:
   spawnWaveIntervalSeconds: 5
   currentDifficulty: {fileID: 11400000, guid: 497fabe6ee4ab3349934005f090c1177, type: 2}
   isCryostasisActive: {fileID: 11400000, guid: e4c9d8fe22aa7664588545fb425ace80, type: 2}
-  overloadSkillCursor: {fileID: 0}
-  doorJamSkillCursor: {fileID: 0}
+  overloadSkillCursor: {fileID: 2800000, guid: 7bce557f27d3ecd4aa1e17715436d38d, type: 3}
+  doorJamSkillCursor: {fileID: 2800000, guid: a556ecf870ae6294d8bf686c70015b31, type: 3}
+  soundController: {fileID: 9151940372950898877, guid: 001a468854bd4b8468b937865823776b, type: 3}
+  animationController: {fileID: 4249835700731359117, guid: 6abc2009aefae7040bd8eba2c114951a, type: 3}
+  cameraShakeBehavior: {fileID: 1687339966}
+  mediumRepairStations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hardRepairStations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1687339966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449043168715321237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f6d67f15fe9e942bace56bb2b5db3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  shakeDuration: 0.3
+  shakeAmount: 0.5
+  decreaseFactor: 1
 --- !u!1001 &53467891032873111
 PrefabInstance:
   m_ObjectHideFlags: 0

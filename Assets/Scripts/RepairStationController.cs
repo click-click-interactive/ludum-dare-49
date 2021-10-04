@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
@@ -22,7 +23,11 @@ public class RepairStationController : MonoBehaviour
         nearbyRepairmen = new List<GameObject>();
         UpdateLightBulb();
     }
-    
+
+    private void Update()
+    {
+        UpdateLightBulb();
+    }
 
     // Update is called once per frame
     void FixedUpdate()
