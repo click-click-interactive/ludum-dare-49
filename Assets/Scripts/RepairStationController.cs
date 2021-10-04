@@ -23,12 +23,6 @@ public class RepairStationController : MonoBehaviour
         UpdateLightBulb();
     }
     
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere (transform.position , explosionRadius);
-    }
 
     // Update is called once per frame
     void FixedUpdate()
