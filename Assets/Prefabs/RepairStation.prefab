@@ -60,7 +60,6 @@ MonoBehaviour:
   unusedMaterial: {fileID: 2100000, guid: 97de46f5c3abb42468bb8b9308e573dd, type: 2}
   usedMaterial: {fileID: 2100000, guid: 841d0e94cf03cd14697b8d981e95ceab, type: 2}
   lightBulb: {fileID: 2627018424952597638}
-  disabledMaterial: {fileID: 0}
 --- !u!54 &3445777635972248014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88,7 +87,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.7
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!65 &2262180318050418169
 BoxCollider:
