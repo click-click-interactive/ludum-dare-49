@@ -60,19 +60,19 @@ public class RepairmanController : MonoBehaviour
 
     public void OnDetected()
     {
-        Debug.Log("NPC arrived to repair station");
+        // Debug.Log("NPC arrived to repair station");
         _isNearStation = true;
     }
 
     public void OnEnterStation()
     {
-        Debug.Log("NPC arrived to repair station");
+        // Debug.Log("NPC arrived to repair station");
         _isNearStation = true;
     }
 
     public void OnLeaveStation()
     {
-        Debug.Log("Repairman leaves repair station");
+        // Debug.Log("Repairman leaves repair station");
         _isNearStation = false;
     }
 

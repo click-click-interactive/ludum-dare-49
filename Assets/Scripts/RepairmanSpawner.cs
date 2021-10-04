@@ -51,8 +51,8 @@ public class RepairmanSpawner : MonoBehaviour
             {
                 Debug.Log("Spawn wave for " + nameof(currentDifficulty.value) + " difficulty");
                 // wave spawn logic
-                StartCoroutine(WaveSpawn(currentDifficulty.value));
                 StartCoroutine(LockWaveSpawn());
+                StartCoroutine(WaveSpawn(currentDifficulty.value));
             }
         }
     }

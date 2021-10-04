@@ -15,7 +15,7 @@ MonoBehaviour:
   minUnstability: 0
   maxUnstability: 100
   unstabilityPerSecond: 1
-  workerFixScore: 0
+  workerFixScore: 1
   easyThreshold: 25
   mediumThreshold: 50
   hardThreshold: 75
@@ -25,3 +25,6 @@ MonoBehaviour:
   overloadDuration: 5
   doorJamCost: 10
   doorJamDuration: 10
+  waveSpawnQuatityEasy: 4
+  waveSpawnQuatityMedium: 8
+  waveSpawnQuatityHard: 16
