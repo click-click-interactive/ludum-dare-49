@@ -48,7 +48,7 @@ public class RepairmanController : MonoBehaviour
 
     private void Update()
     {
-        if (_targetRepairStation == null)
+        if (_targetRepairStation == null || !_targetRepairStation.GetComponent<RepairStationController>().isWorking)
         {
             FindTargetRepairStation();
         }
